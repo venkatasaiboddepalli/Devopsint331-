@@ -74,5 +74,23 @@ The frontend communicates with the backend using **REST APIs** running on `local
 ---
 
 ## 📂 Project Structure
-
+Devops-int331-project/
+│
+├── index.html # Frontend UI
+├── style.css # Frontend styling
+│
+├── backend-java/
+│ ├── pom.xml # Maven configuration
+│ ├── src/main/java/
+│ │ └── com/inventory/
+│ │ ├── InventoryApplication.java
+│ │ ├── controller/
+│ │ │ └── InventoryController.java
+│ │ ├── service/
+│ │ │ └── InventoryService.java
+│ │ └── model/
+│ │ └── Product.java
+│
+├── .vscode/ # Editor configuration
+└── README.md # Project documentation
 
