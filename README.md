@@ -94,3 +94,103 @@ Devops-int331-project/
 ├── .vscode/ # Editor configuration
 └── README.md # Project documentation
 
+---
+
+## 🌿 Git Branching Strategy
+
+| Branch Name | Purpose |
+|------------|---------|
+| main | Stable version of the project |
+| visual | UI / design-related changes |
+| feature-api | Backend API enhancements |
+| bugfix-cleanup | Bug fixes and cleanup |
+
+---
+
+## 🧪 Backend APIs Used
+
+| API Endpoint | Method | Description |
+|-------------|--------|-------------|
+| `/products` | GET | Fetch all products |
+| `/add` | POST | Add a new product |
+| `/update` | PUT | Update existing product |
+| `/search/{name}` | GET | Search product by name |
+| `/delete/{name}` | DELETE | Delete product by name |
+
+---
+
+## ⚠️ Challenges Faced
+
+- Understanding Git branch tracking  
+- Managing multiple commits correctly  
+- Running frontend and backend separately  
+- Handling Maven build errors  
+- Understanding REST API integration  
+- Dealing with Whitelabel Error Page (404)  
+
+---
+
+## ✅ Advantages of the System
+
+- Clean separation of frontend and backend  
+- Proper DevOps workflow with Git & Maven  
+- Easy to maintain and extend  
+- Real-world DevOps experience  
+- Academic CA-ready project  
+
+---
+
+## 🚀 Future Enhancements
+
+- Database integration (MySQL / PostgreSQL)  
+- User authentication  
+- Docker containerization  
+- CI/CD pipeline using GitHub Actions  
+- Deployment on cloud (AWS / Azure)  
+
+---
+
+## 🎓 Conclusion
+
+This Inventory Management System project successfully demonstrates the use of **DevOps practices** in a real-world scenario.  
+By integrating **Git version control**, **Maven build automation**, and **frontend–backend interaction**, the project provides strong foundational knowledge for DevOps and software engineering concepts.
+
+---
+
+## 📚 References
+
+- Spring Boot Documentation  
+- Maven Documentation  
+- Git & GitHub Documentation  
+
+---
+
+## ⚙️ Commands Used
+
+### Git Commands
+
+```bash
+git init
+
+git add index.html
+git commit -m "Frontend: added inventory UI"
+
+git add style.css
+git commit -m "Frontend: added styling"
+
+git add backend-java
+git commit -m "Backend: added Spring Boot inventory service"
+
+git checkout -b visual
+git commit -m "UI: visual improvements"
+
+git checkout -b feature-api
+git commit -m "API: enhanced inventory endpoints"
+
+git checkout -b bugfix-cleanup
+git commit -m "Bugfix: cleaned frontend validations"
+
+git push -u origin main
+git push -u origin visual
+git push -u origin feature-api
+git push -u origin bugfix-cleanup
