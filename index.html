@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>Inventory Management System</header>
+
+<div class="container">
+
+    <h3>Add Product</h3>
+    <input type="text" id="name" placeholder="Product Name">
+    <input type="number" id="quantity" placeholder="Quantity">
+    <input type="number" id="price" placeholder="Price">
+    <button onclick="addProduct()">Add</button>
+
+    <h3>Search Product</h3>
+    <input type="text" id="search" placeholder="Search by Name">
+    <button onclick="searchProduct()">Search</button>
+    <p id="searchResult"></p>
+
+    <h3>Update Product</h3>
+    <input type="text" id="updateName" placeholder="Product Name">
+    <input type="number" id="updateQuantity" placeholder="New Quantity">
+    <input type="number" id="updatePrice" placeholder="New Price">
+    <button onclick="updateProduct()">Update</button>
+
+    <h3>Product List</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price ($)</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="productTable"></tbody>
+    </table>
+
+</div>
+
+<script>
+const apiBase = "http://localhost:8080";
+
+async function addProduct() {
+    let product = {
+        name: document.getElementById("name").value,
+        quantity: parseInt(document.getElementById("quantity").value),
+        price: parseFloat(document.getElementById("price").value)
+    };
+
+    await fetch(apiBase + "/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product)
+    });
+
+    loadProducts();
+}
+
+async function searchProduct() {
+    let name = document.getElementById("search").value;
+
+    let response = await fetch(apiBase + "/search/" + name);
+    let data = await response.json();
+
+    let resultBox = document.getElementById("searchResult");
+
+    if (!data || !data.name) {
+        resultBox.innerHTML = "❌ Product not found";
+        resultBox.style.color = "red";
+    } else {
+        resultBox.innerHTML = `✔️ Found: ${data.name}, Qty: ${data.quantity}, Price: ${data.price}`;
+        resultBox.style.color = "green";
+    }
+}
+
+async function updateProduct() {
+    let updated = {
+        name: document.getElementById("updateName").value,
+        quantity: parseInt(document.getElementById("updateQuantity").value),
+        price: parseFloat(document.getElementById("updatePrice").value)
+    };
+
+    await fetch(apiBase + "/update", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updated)
+    });
+
+    loadProducts();
+}
+
+async function deleteProduct(name) {
+    await fetch(apiBase + "/delete/" + name, { method: "DELETE" });
+    loadProducts();
+}
+
+async function loadProducts() {
+    let response = await fetch(apiBase + "/products");
+    let data = await response.json();
+
+    let table = document.getElementById("productTable");
+    table.innerHTML = "";
+
+    data.forEach(p => {
+        let row = `
+            <tr>
+                <td>${p.name}</td>
+                <td>${p.quantity}</td>
+                <td>${p.price}</td>
+                <td>
+                    <button onclick="deleteProduct('${p.name}')">Delete</button>
+                </td>
+            </tr>
+        `;
+        table.innerHTML += row;
+    });
+}
+
+window.onload = loadProducts;
+</script>
+
+</body>
+</html>
