@@ -3,7 +3,7 @@
 <p align="center">
   A full-stack <strong>Inventory Management System</strong> developed and managed using  
   <strong>DevOps best practices</strong> such as <strong>Git, Maven, branching strategy</strong>,  
-  and frontend–backend integration.
+  and frontend–backend is integration.
 </p>
 
 ---
